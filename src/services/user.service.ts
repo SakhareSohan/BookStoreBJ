@@ -49,9 +49,9 @@ class UserService {
   };
 
   //delete a user
-  public deleteUser = async (id) => {
-    await this.User.destroy({ where: { id: id } });
-    return '';
+  public deleteUser = async (body) => {
+    const data = await this.User.destroy({ where: { email: body.email } });
+    return data;
   };
 
   //get all users

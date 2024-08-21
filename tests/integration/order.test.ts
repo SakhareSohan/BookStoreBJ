@@ -23,6 +23,12 @@ const user = {
   mobileNo: 1234567890
 }
 
+const order = {
+  bookId: 1,
+  quantity: 1,
+  price: 100
+}
+
 describe('Book Store Integration testing', () => {
  describe('User APIs Test', () => {
   ////////////////////////////////////////////////////////////////////////////
@@ -76,6 +82,35 @@ describe('Book Store Integration testing', () => {
       });
     });
    });
+
+   //////////////////////////////////////////////////////////////////////////
+
+   describe('Order Place', () => {
+    it('Order Place', (done) => {
+     request(app.getApp())
+      .post('/api/v1/order/')
+      .send(order)
+      .set('Authorization', admintoken)
+      .end((err, res) => {
+       expect(res.statusCode).to.be.equal(200);
+       done();
+      });
+    });
+   });
+
+   describe('Order Place', () => {
+    it('Order Place', (done) => {
+     request(app.getApp())
+      .get('/api/v1/order/')
+      .set('Authorization', admintoken)
+      .end((err, res) => {
+       expect(res.statusCode).to.be.equal(200);
+       done();
+      });
+    });
+   });
+
+   //////////////////////////////////////////////////////////////////////////
 
    describe('Delete A Admin', () => {
     it('Delete Of Admin', (done) => {

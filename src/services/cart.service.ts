@@ -1,8 +1,10 @@
 import sequelize, { DataTypes } from '../config/database';
 import cart from '../models/cart';
+import book from '../models/book';
 
 class CartService {
   private Cart = cart(sequelize, DataTypes);
+  private Book = book(sequelize, DataTypes);
 
   // Get cart by user ID
   public getCart = async (id) => {
@@ -13,6 +15,11 @@ class CartService {
   };
 
   public createCart = async (body) => {
+    const bookData = await this.Book.findOne({
+      where : {
+        id : body.bookId
+      }
+    });
     const cartData = await this.Cart.findAll({
       where: {
         userId: body.userId
@@ -21,10 +28,15 @@ class CartService {
     if (cartData.length > 0) {
       const cartItem = cartData.find(item => item.bookId === body.bookId);
       if (cartItem){
+        if (body.quantity > bookData.quantity) {
+          throw new Error ('Quantity is out of range');
+        }
         cartItem.quantity = body.quantity;
-        cartItem.price = body.price;
+        cartItem.price = bookData.discountPrice;
 
         const data = await cartItem.save();
+        bookData.quantity = bookData.quantity - data.quantity;
+        const bookUpdate = await bookData.save();
         return data;
       } else {
         const obj = {

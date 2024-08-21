@@ -23,6 +23,12 @@ const user = {
   mobileNo: 1234567890
 }
 
+const cart = {
+  bookId: 1,
+  quantity: 10,
+  price: 200
+}
+
 describe('Book Store Integration testing', () => {
  describe('User APIs Test', () => {
   ////////////////////////////////////////////////////////////////////////////
@@ -76,6 +82,47 @@ describe('Book Store Integration testing', () => {
       });
     });
    });
+
+//////////////////////////////////////////////////////////////////////////////
+
+describe('Create A Cart', () => {
+  it('Create a Cart', (done) => {
+   request(app.getApp())
+    .post('/api/v1/cart/')
+    .send(cart)
+    .set('Authorization', usertoken)
+    .end((err, res) => {
+     expect(res.statusCode).to.be.equal(200);
+     done();
+    });
+  });
+ });
+
+ describe('Get A Cart', () => {
+  it('Get a Cart', (done) => {
+   request(app.getApp())
+    .get('/api/v1/cart/')
+    .set('Authorization', usertoken)
+    .end((err, res) => {
+     expect(res.statusCode).to.be.equal(200);
+     done();
+    });
+  });
+ });
+
+ describe('Delete An Item Cart', () => {
+  it('Delete An Item Cart', (done) => {
+   request(app.getApp())
+    .get('/api/v1/cart/delete/1')
+    .set('Authorization', usertoken)
+    .end((err, res) => {
+     expect(res.statusCode).to.be.equal(200);
+     done();
+    });
+  });
+ });
+
+//////////////////////////////////////////////////////////////////////////////
 
    describe('Delete A Admin', () => {
     it('Delete Of Admin', (done) => {

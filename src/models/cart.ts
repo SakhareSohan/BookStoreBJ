@@ -47,7 +47,17 @@ export default (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'cart'
+      modelName: 'cart',
+      indexes: [
+        {
+          fields: ['userId'],
+          using: 'btree',
+        },
+        {
+          fields: ['id'],
+          using: 'btree',
+        }
+      ]
     }
   );
   return Cart;

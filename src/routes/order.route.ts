@@ -14,11 +14,13 @@ class OrderRoutes {
 
   private routes = () => {
 
+    this.router.get('/', userAuth, this.OrderController.getAllOrder);
+
     this.router.get('/:orderId', userAuth, this.OrderController.getOrder);  // registration
 
     this.router.post('/', userAuth, this.OrderController.createOrder);  // registration admin
 
-    this.router.post('/cart', userAuth, this.OrderController.createOrderCart); // login
+    this.router.post('/cart', userAuth, this.OrderController.createOrderCart); 
   };
 
   public getRoutes = (): IRouter => {

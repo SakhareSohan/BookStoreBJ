@@ -77,31 +77,5 @@ describe('Book Store Integration testing', () => {
     });
    });
 
-   describe('Delete A Admin', () => {
-    it('Delete Of Admin', (done) => {
-     request(app.getApp())
-      .post('/api/v1/users/admin/delete')
-      .send({ email: admin.email })
-      .set('Authorization', admintoken)
-      .end((err, res) => {
-       expect(res.statusCode).to.be.equal(200);
-       done();
-      });
-    });
-   });
-
-   describe('Delete A User', () => {
-    it('Delete Of User', (done) => {
-     request(app.getApp())
-      .post('/api/v1/users/login/delete')
-      .set('Authorization', usertoken)
-      .send({ email: user.email })
-      .end((err, res) => {
-       expect(res.statusCode).to.be.equal(200);
-       done();
-      });
-    });
-   });
-
  });
 });

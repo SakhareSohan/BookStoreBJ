@@ -28,7 +28,7 @@ export const userAuth = async (
     bearerToken = bearerToken.split(' ')[1];
 
     const { id, role }: any = await jwt.verify(bearerToken, secreat_key);
-    if ( role === "user") {
+    if ( role == "user") {
       req.body.userId = id;
     req.body.role = role;
       next();

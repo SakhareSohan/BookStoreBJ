@@ -53,6 +53,29 @@ class UserController {
     }
   };
 
+    /**
+   * Controller to create new user
+   * @param  {object} Request - request object
+   * @param {object} Response - response object
+   * @param {Function} NextFunction
+   */
+    public getAllOrder = async (
+      req: Request,
+      res: Response,
+      next: NextFunction
+    ): Promise<any> => {
+      try {
+        const data = await this.OrderService.getAllOrder(req.body.userId);
+        res.status(HttpStatus.CREATED).json({
+          code: HttpStatus.CREATED,
+          data: data,
+          message: 'User created successfully'
+        });
+      } catch (error) {
+        next(error);
+      }
+    };
+
   /**
    * Controller to create new user
    * @param  {object} Request - request object

@@ -48,6 +48,16 @@ export default (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: 'order',
+      indexes: [
+        {
+          fields: ['userId'],
+          using: 'btree',
+        },
+        {
+          fields: ['id'],
+          using: 'btree',
+        }
+      ]
     }
   );
   return Order;

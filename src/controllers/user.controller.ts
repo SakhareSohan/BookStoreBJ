@@ -111,7 +111,7 @@ class UserController {
     next: NextFunction
   ): Promise<any> => {
     try {
-      await this.UserService.deleteUser(req.params.id);
+      await this.UserService.deleteUser(req.body.email);
       res.status(HttpStatus.OK).json({
         code: HttpStatus.OK,
         data: {},

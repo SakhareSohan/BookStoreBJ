@@ -60,7 +60,18 @@ export default (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: 'book'
+      modelName: 'book', 
+      indexes: [
+        {
+            fields: ['admin_user_id'], 
+            using: 'btree', 
+        }, 
+        {
+            unique: true,
+            fields: ['id'],
+            using: 'btree',
+        }
+      ],
     }
   );
   return Book;

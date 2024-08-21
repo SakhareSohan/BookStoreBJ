@@ -59,7 +59,17 @@ export default (sequelize, DataTypes) => {
             user.password = await bycrpt.hash(user.password, 10);
           }
         }
-      }
+      },
+      indexes: [
+        {
+          fields: ['email'],
+          using: 'hash'
+        },
+        {
+          fields: ['id'],
+          using: 'btree'
+        }
+      ]
     }
   );
   return User;
