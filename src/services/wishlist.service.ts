@@ -1,7 +1,7 @@
 import sequelize, { DataTypes } from '../config/database';
 import wishlist from '../models/wishlist';
 
-class CartService {
+class WishlistService {
   private wishlist = wishlist(sequelize, DataTypes);
 
   public getWishlist = async (body) => {
@@ -44,4 +44,4 @@ class CartService {
   }
 }
 
-export default CartService;
+export default WishlistService;

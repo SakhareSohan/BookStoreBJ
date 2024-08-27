@@ -1,4 +1,4 @@
-class CartService {
+class AddressService {
 
   // Get cart by user ID
   public setAddress = async (body) => {
@@ -8,4 +8,4 @@ class CartService {
  
 }
 
-export default CartService;
+export default AddressService;

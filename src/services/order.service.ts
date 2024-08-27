@@ -4,7 +4,7 @@ import book from '../models/book';
 import user from '../models/user';
 import mailer from '../utils/mail.util';
 
-class CartService {
+class OrderService {
   private Order = order(sequelize, DataTypes);
   private Book = book(sequelize, DataTypes);
   private User = user(sequelize, DataTypes);
@@ -69,4 +69,4 @@ class CartService {
  
 }
 
-export default CartService;
+export default OrderService;
