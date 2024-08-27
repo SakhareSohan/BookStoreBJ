@@ -10,6 +10,37 @@ pipeline {
             }
         }
 
+        stage('Prepare Environment') {
+            steps {
+                echo 'Setting up environment variables...'
+                writeFile file: '.env', text: '''
+                APP_HOST = http://localhost
+APP_PORT = 3000
+
+API_VERSION = v1
+
+DATABASE = bookstore
+DUSERNAME = postgres
+PASSWORD = root
+HOST = 127.0.0.1
+PORT = 5432
+DIALECT = postgres
+
+DATABASE_TEST = bookstoretest                                                                              
+DUSERNAME_TEST = postgres
+PASSWORD_TEST = root
+HOST_TEST = 127.0.0.1
+PORT_TEST = 5432
+DIALECT_TEST = postgres
+
+mailUser = sohanrs20it@student.mes.ac.in
+mailPass = pwql qrfc ckgp ncbr
+
+SEC = wedxctyhbnmkiolkmhytrfvhy6789iuyt5432werewsdftyhbvcftgnkiu90oi9876tyhf54er43w232qw3wwesddxcfcvbnnbvftyhnmjhyuiokki890987654rtyhgfre4ew323werdcghbnjhy7890okjhgt65
+                ''' 
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 echo 'Installing dependencies...'
